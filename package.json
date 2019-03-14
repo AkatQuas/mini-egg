@@ -1,0 +1,25 @@
+{
+  "name": "mini-egg",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon app/app.js",
+    "start": "NODE_ENV=production node app/app.js"
+  },
+  "dependencies": {
+    "deepmerge": "^3.2.0",
+    "ioredis": "^4.6.2",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "bunyan": "^1.8.12",
+    "fs-extra": "^7.0.1",
+    "humps": "^2.0.1",
+    "nodemon": "^1.18.10"
+  }
+}
