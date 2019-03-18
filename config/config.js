@@ -5,7 +5,7 @@ module.exports = {
     },
     redis: {
         port: 6379,
-        host: '192.168.3.132',
+        host: 'localhost',
         family: 4,
         password: null,
         db: 0

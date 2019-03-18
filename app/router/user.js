@@ -1,5 +1,10 @@
 module.exports = (router, controller) => {
-    router.get('/user/hello', controller.user.hello);
-    router.get('/user/hello/:who', controller.user.hello);
-    router.post('/user/world', controller.user.world);
+    const { user } = controller;
+    router.get('/user/hello', user.hello);
+    router.get('/user/hello/:who', user.hello);
+    router.post('/user/world', user.world);
+    router.post('/user/mongo', user.mongoCreate);
+    router.get('/user/mongo/case', user.mongoCase);
+    router.get('/user/mongo/:uid', user.mongoOne);
+    router.post('/user/hobbies', user.addHobbies);
 };

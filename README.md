@@ -34,9 +34,11 @@ You should take it more like a shadow project for egg, rather than a framework, 
 
 Feel free to fork or clone the project to customzie.
 
-## Under tho hood
+## Under the hood
 
 The files in [`/app/loader`](./app/loader) help you to register those functions or classes in the `app` fields, such as `controller`, `service`, `logger` etc.
+
+> In some degree, these `loader` functions play the role of the `plugin` or `extensions`.
 
 ## What's not inclueded?
 
