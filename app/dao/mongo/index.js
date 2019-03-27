@@ -28,6 +28,6 @@ module.exports.getUser = (id) => {
 }
 
 module.exports.getUserCaseList = async (uid) => {
-  const raw = await models.User.findOne({ _id: oid(uid) }).lean();
+  const raw = await models.User.findOne({ _id: oid(uid) }, { _id: 0 }).lean();
   return raw.cases;
 }

@@ -29,7 +29,10 @@ class UserController extends Controller {
         const { uid } = ctx.params;
         ctx.body = await app.service.user.mongoOne(uid);
     }
-
+    async mongoList(ctx) {
+        const { app } = this;
+        ctx.body = await app.service.user.userList();
+    }
     async mongoCase(ctx) {
         const { app } = this;
         const { uid } = ctx.query;
@@ -41,6 +44,14 @@ class UserController extends Controller {
         const { app } = this;
         const { uid, hobbies } = ctx.request.body;
         ctx.body = await app.service.user.addHobbies(uid, hobbies);
+    }
+
+    async removeOne(ctx) {
+        const { app } = this;
+        const { uid } = ctx.params;
+        console.log(uid);
+
+        ctx.body = await app.service.user.removeOne(uid);
     }
 }
 

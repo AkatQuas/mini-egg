@@ -29,21 +29,42 @@ class UserService {
             ]
         });
     }
+    async userList() {
+        return models.User.find().lean();
+    }
+    async removeOne(uid) {
+        const res = await models.User.remove({ _id: uid });
+        return (res.n > 0) ? { success: true } : {
+            success: false
+        };
+        /*
+        // or another way
+        const user = await models.User.findById(uid);
+        if (user) {
+            await user.remove();
+            return { success: true };
+        } else {
+            return { success: false, message: `user not found ${uid}` };
+        }
+        */
+    }
     async mongoOne(uid) {
         return getUser(uid);
     }
     async mongoCase(uid) {
         const res = await getUserCaseList(uid);
-        return res.map(({ _id, ...rest }, ) => ({ ...rest }));
+        return res;
     }
     async addHobbies(uid, hobbies) {
-        return await models.User.findOneAndUpdate({
-            _id: uid
-        }, {
-            $push: {hobbies: hobbies}
-        }, {
-            'new': true
-        });
+        return models.User.findOneAndUpdate(
+            {
+                _id: uid
+            },
+            {
+                $push: { hobbies: hobbies }
+            }, {
+                'new': true
+            });
     }
 }
 
