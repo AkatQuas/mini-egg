@@ -7,8 +7,10 @@
     "start": "NODE_ENV=production node app/app.js"
   },
   "dependencies": {
+    "canvas": "^2.4.1",
     "deepmerge": "^3.2.0",
     "ioredis": "^4.6.2",
+    "js-md5": "^0.7.3",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-router": "^7.4.0",

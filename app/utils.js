@@ -6,6 +6,8 @@ module.exports.resolveConf = (...dir) => path.resolve(__dirname, '../config', ..
 
 module.exports.resolveApp = (...dir) => path.resolve(__dirname, '../app', ...dir);
 
+module.exports.resolveRoot = (...dir) => path.resolve(__dirname, '..', ...dir);
+
 module.exports.camelize = (string) => humps.camelize(string);
 
 module.exports.decamelize = (string) => humps.decamelize(string);

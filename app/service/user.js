@@ -1,4 +1,5 @@
 const { models, getUser, getUserCaseList } = require('../dao/mongo');
+
 class UserService {
     async greet({
         who, when
