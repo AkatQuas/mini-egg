@@ -14,6 +14,31 @@ You should take it more like a shadow project for egg, rather than a framework, 
 
 - Using [bunyan](https://github.com/trentm/node-bunyan) as logger, however the logger config is *hardcoded*.
 
+- Websocket, using [ws](https://github.com/websockets/ws). You have to set these varibles (`token` for example) in the first connection in the url.
+
+    ```js
+    // client
+    const wsc = new WebSocket('ws://localhost:8081/path-for-specific-websocket-server-instance?token=lmKam8IMg52dHbyCTk0A&uuid=hoO0TNpcIac0q7iXM139oQ')
+
+    // server
+    wss.on('connection' , (ws, req) => {
+        ws.on('message', async (message) => {
+            console.log('In thunder receive message: %s', message);
+            console.log('[Thunder] got headers: %o ',req.headers);
+            const { query } = url.parse(req.url, true);
+            console.log('[Thunder] got token "%s", got uuid "%s" ', query.token, query.uuid);
+
+
+            ws.send('We[thunder] have you '.concat(message));
+            ws.close();
+        });
+        ws.on('close', async () => {
+            console.log('thunder close');
+        });
+    })
+    ```
+
+
 ## How to use
 
 - Write router file in `/app/router/`, [example file](./app/router/user.js).

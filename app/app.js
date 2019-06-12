@@ -1,3 +1,4 @@
+const httpServer = require('http');
 const Koa = require('koa');
 const config = require('./config');
 
@@ -9,6 +10,7 @@ const routerMiddle = require('./middleware/router');
 const sessionMiddle = require('./middleware/session');
 const bodyMiddle = require('./middleware/body');
 const staticMiddle = require('./middleware/static');
+const websocket = require('./middleware/websocket');
 
 // koa app
 const app = new Koa();
@@ -27,7 +29,29 @@ app.use(staticMiddle);
 // add router
 app.use(routerMiddle(app));
 
-// app run
+// add websocket
+const server = httpServer.Server(app.callback());
+websocket(server);
+
+// app run or server run
+{
+    const { name, port } = config.app;
+    server.listen(port, (err) => {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+        app.logger.info(`🚀 ${name} running at http://localhost:${port}/, \n
+        websocket on ws://localhost:${port}/,`);
+    });
+}
+
+/*
+
+// if there is no websocket, we could just
+// run the following code, `app` listen to port
+// rather than `server` listen
+
 {
     const { name, port } = config.app;
     app.listen(port, (err) => {
@@ -38,3 +62,4 @@ app.use(routerMiddle(app));
         app.logger.info(`🚀 ${name} running at http://localhost:${port}/`);
     });
 }
+*/
