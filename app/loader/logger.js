@@ -1,9 +1,9 @@
 const config = require('../config');
-const bunyan = require('bunyan');
+const createLogger = require('../lib/create-logger');
 
-const logger = bunyan.createLogger({
-    name: config.app.name,
-    streams: [
+const logger = createLogger(
+    config.app.name,
+    [
         {
             level: 'info',
             stream: process.stdout
@@ -13,7 +13,7 @@ const logger = bunyan.createLogger({
             path: `/var/tmp/${config.app.name}-error.log`
         }
     ]
-});
+);
 
 module.exports = (app) => {
     app.logger = logger;

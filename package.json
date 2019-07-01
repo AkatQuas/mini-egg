@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app/app.js",
-    "start": "NODE_ENV=production node app/app.js"
+    "dev": "NODE_ENV=development nodemon app/index.js",
+    "start": "NODE_ENV=production node app/index.js"
   },
   "nodemonConfig": {
     "ext": ".js .json",
@@ -15,7 +15,7 @@
     "verbose": true
   },
   "dependencies": {
-    "canvas": "^2.4.1",
+    "canvas": "2.6.0",
     "deepmerge": "^3.2.0",
     "ioredis": "^4.6.2",
     "js-md5": "^0.7.3",
