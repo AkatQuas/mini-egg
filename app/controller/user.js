@@ -2,56 +2,55 @@ const Controller = require('../core/controller.base');
 
 class UserController extends Controller {
     async hello(ctx) {
-        const { app } = this;
         const { who } = ctx.params;
-        const { when } = ctx.query;
-        app.logger.info('abc');
-        ctx.body = await app.service.user.greet({
+        const { when } = ctx.request.query;
+        ctx.logger.info('abc');
+        ctx.body = await ctx.service.user.greet({
             who, when
         });
     }
 
     async world(ctx) {
-        const { service, logger } = this.app;
+        const { service, logger } = ctx;
         const { who, when } = ctx.request.body;
         logger.info('world');
-        ctx.body = await service.user.greet({ who, when });
+        ctx.response.body = await service.user.greet({ who, when });
     }
 
     async mongoCreate(ctx) {
-        const { logger, service } = this.app;
+        const { logger, service } = ctx;
         logger.info('mongo user');
-        ctx.body = await service.user.mongoCreate();
+        ctx.response.body = await service.user.mongoCreate();
     }
 
     async mongoOne(ctx) {
-        const { service } = this.app;
+        const { service } = ctx;
         const { uid } = ctx.params;
-        ctx.body = await service.user.mongoOne(uid);
+        ctx.response.body = await service.user.mongoOne(uid);
     }
     async mongoList(ctx) {
-        const { service } = this.app;
-        ctx.body = await service.user.userList();
+        const { service } = ctx;
+        ctx.response.body = await service.user.userList();
     }
     async mongoCase(ctx) {
-        const { service } = this.app;
+        const { service } = ctx;
         const { uid } = ctx.query;
 
-        ctx.body = await service.user.mongoCase(uid);
+        ctx.response.body = await service.user.mongoCase(uid);
     }
 
     async addHobbies(ctx) {
-        const { service } = this.app;
+        const { service } = ctx;
         const { uid, hobbies } = ctx.request.body;
-        ctx.body = await service.user.addHobbies(uid, hobbies);
+        ctx.response.body = await service.user.addHobbies(uid, hobbies);
     }
 
     async removeOne(ctx) {
-        const { service } = this.app;
+        const { service } = ctx;
         const { uid } = ctx.params;
         console.log(uid);
 
-        ctx.body = await service.user.removeOne(uid);
+        ctx.response.body = await service.user.removeOne(uid);
     }
 }
 

@@ -16,5 +16,5 @@ const logger = createLogger(
 );
 
 module.exports = (app) => {
-    app.logger = logger;
+    app.context.logger = logger;
 };

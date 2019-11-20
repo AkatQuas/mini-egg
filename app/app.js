@@ -17,7 +17,7 @@ module.exports = () => {
     const app = new Koa();
     app.keys = config.app.keys;
 
-    // load context to app, controller, service, logger, model, etc
+    // extend the context in app, mounting controller, service, logger, database connection, model, etc
     loadLogger(app);
     loadController(app);
     loadService(app);

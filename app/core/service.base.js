@@ -1,5 +1,5 @@
 class Service {
-    constructor (app) {
+    constructor(app) {
         this.app = app;
     }
 }

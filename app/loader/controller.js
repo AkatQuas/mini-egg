@@ -3,7 +3,7 @@ const { resolveApp, camelize, fs, checkJsFile } = require('../utils');
 module.exports = (app) => {
     const dir = resolveApp('controller');
 
-    app.controller = fs.readdirSync(dir)
+    app.context.controller = fs.readdirSync(dir)
         .filter(checkJsFile)
         .reduce((con, file) => {
             const name = camelize(file.replace('.js', ''));

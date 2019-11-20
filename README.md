@@ -41,23 +41,23 @@ You should take it more like a shadow project for egg, rather than a framework, 
 
 ## How to use
 
-- Write router file in `/app/router/`, [example file](./app/router/user.js).
+- Write router in `/app/router/`, [example](./app/router/user.js).
 
-- Write the corresponding controller file in `/app/controller`, [example file](./app/controller/user.js).
+- Write the corresponding controller in `/app/controller`, [example](./app/controller/user.js).
 
-- If you need corresponding service file, just create one in `/app/service`, [example file](./app/service/user.js).
+- If you need corresponding service, just create one in `/app/service`, [example](./app/service/user.js).
 
 - And in case you need some connection to database or redis, I recommend you to write those *DAO*es in `/app/dao`, and not register them to the `app` or `ctx` to keep the flexibility.
 
-    In the [Egg] framework, I guess those plugins help you to register these *DAO*es, so you can have access to them in the `ctx` or `app` easily.
-
     Here, this boilerplate does **NOT** support plugin extensions, so nevermind.
+
+    _In my opinion, the plugin extensions is used to extend the `app.context`, granting more functionality, so that we can access to them easily just by refering a property in `context` in the **controllers**. So if you need more plugin, just following this concept._
 
 - Here is the [configuration files](./config) for you. As for different production environment, we got [config.local.js](./config/config.local.js) (optional) and [config.prod.js](./config/config.prod.js) (optional) which will overwrite those config in [config.js](./config/config.js).
 
 ## Customization
 
-Feel free to fork or clone the project to customzie.
+Feel free to fork or clone the project to customize.
 
 ## Under the hood
 
@@ -71,11 +71,11 @@ The files in [`/app/loader`](./app/loader) help you to register those functions 
 
 - Process deamon such as `pm2`.
 
-- Agent/Worker mode for robust.
+- <del>Agent/Worker mode for robust.</del> Check [app/index.js](./app/index.js) for details.
 
 - Plugin extensions.
 
-- Test Case.
+- Testing Case.
 
 - Error Monitor.
 
